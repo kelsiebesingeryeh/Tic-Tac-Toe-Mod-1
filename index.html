@@ -8,17 +8,26 @@
   <body>
     <main>
       <section class="board">
+        <h1 class="display-player"></h1>
+        <!-- <img src="./assets/taxi.svg" class="taxi hidden">
+        <img src="./assets/pizza.svg" class="pizza hidden"> -->
+      <section class="turn-display">
+      </section>
+      <section class="display-winner-one">
+      </section>
+      <section class="display-winner-two">
+      </section>
         <div class="container-wrapper">
           <div class="board-wrap">
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
+            <div class="box" id="box-0"></div>
+            <div class="box" id="box-1"></div>
+            <div class="box" id="box-2"></div>
+            <div class="box" id="box-3"></div>
+            <div class="box" id="box-4"></div>
+            <div class="box" id="box-5"></div>
+            <div class="box" id="box-6"></div>
+            <div class="box" id="box-7"></div>
+            <div class="box" id="box-8"></div>
           </div>
         </div>
       </section>
@@ -28,17 +37,3 @@
     <script src="./main.js"></script>
   </body>
 </html>
-
-
-
-
-  <!-- //Pseudocode
-  <! 2. queryselect those divs
-  3. event delegation to select the whole area
-  4. input innerHTML to get the icon to appear
-  5. if/else condition - last win being draw - win condition
-  6. global array - find a way when you click a certain box, insert token into certain places in array
-  7. check win condition - use array indexes to check win condition. last else would be a draw
-  8. running it in the console before
-  9. build the basic HTML and CSS and incorporate that and see it visually
-10. -->
