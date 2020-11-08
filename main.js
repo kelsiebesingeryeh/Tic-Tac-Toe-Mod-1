@@ -8,7 +8,6 @@ var box6 = document.querySelector('#box-6');
 var box7 = document.querySelector('#box-7');
 var box8 = document.querySelector('#box-8');
 var allBoxes = document.querySelectorAll('.box');
-var turnDisplay = document.querySelector('.turn-display');
 var taxiToken = document.querySelector('.taxi');
 var pizzaToken = document.querySelector('.pizza');
 var gameWrapper = document.querySelector('.container-wrapper');
@@ -23,39 +22,63 @@ window.onload = startGame();
 
 boardWrapper.addEventListener('click', function(event) {
   if (event.target.classList.contains('box')) {
-    toggleToken(event);
-    currentGame.switchPlayerTurn();
-    updatePlayerTurn();
-    disableClicks(event);
-    currentGame.checkWins();
-    addMoves(event);
+    playGame();
   }
-})
+});
 
 function startGame() {
-  currentGame = new Game(); //in that function is where you are defining it. every time you call game, you are referencing that current game variable
+  currentGame = new Game();
   currentGame.player1.turn = true;
   displayPlayerTurn()
 }
 
+function playGame() {
+  toggleToken(event);
+  currentGame.switchPlayerTurn();
+  updateDisplayPlayerTurn();
+  disableClicks(event);
+  addMoves(event);
+  currentGame.checkWins();
+  displayWinner();
+  displayDraw();
+}
+
+function displayWinner() {
+  // currentGame.player1.token = '🚕';
+  // currentGame.player2.token = '🍕';
+  if (currentGame.gameWon === true && currentGame.player1.turn === false) {
+    playerDisplayText.innerText = `${currentGame.player1.token} won!`;
+  } else if (currentGame.gameWon === true && currentGame.player2.turn === false) {
+    playerDisplayText.innerText = `${currentGame.player2.token} won!`;
+  }
+}
+
+function displayDraw() {
+  if (currentGame.clickCounter === 9 && currentGame.gameWon === false) {
+    playerDisplayText.innerText = `It's a draw!`;
+  }
+}
+
 function disableClicks(event) {
   for (var i = 0; i < allBoxes.length; i++) {
-    if (currentGame.clickCounter === 9) {
+    if (currentGame.clickCounter === 9 || currentGame.gameWon === true) {
       allBoxes[i].classList.add('avoid-clicks');
     }
-    if (event.target.innerText !== '') {
-      event.target.classList.add('avoid-clicks');
-    }
+  }
+  if (event.target.innerText !== '') {
+    event.target.classList.add('avoid-clicks');
   }
 }
 
 function addMoves(event) {
   boxIndex = event.target.id;
-  currentGame.addMovesToBoard(boxIndex);
+  currentGame.addMovesToBoardData(boxIndex);
   console.log(currentGame.boardData);
 }
 
 function toggleToken(event) {
+  // currentGame.player1.token = '🚕';
+  // currentGame.player2.token = '🍕';
   if (currentGame.player1.turn === true) {
     event.target.innerText = `${currentGame.player1.token}`
   } else if (currentGame.player2.turn === true) {
@@ -64,16 +87,19 @@ function toggleToken(event) {
 }
 
 function displayPlayerTurn() {
+  // currentGame.player1.token = '🚕';
   if (currentGame.player1.turn === true) {
     playerDisplayText.innerText = `It's ${currentGame.player1.token}'s turn`;
   }
 }
 
-function updatePlayerTurn() {
+function updateDisplayPlayerTurn() {
+  // currentGame.player1.token = '🚕';
+  // currentGame.player2.token = '🍕';
   if (currentGame.player1.turn === true) {
-    playerDisplayText.innerHTML = `It's ${currentGame.player1.token} turn`;
+    playerDisplayText.innerHTML = `It's ${currentGame.player1.token}'s turn`;
   } else if (currentGame.player2.turn === true) {
-    playerDisplayText.innerHTML = `It's ${currentGame.player2.token} turn`;
+    playerDisplayText.innerHTML = `It's ${currentGame.player2.token}'s turn`;
   }
 }
 
@@ -92,8 +118,6 @@ QUESTIONS - NEED HELP
 
 
 Pseudocode:
-1. What data do I think I will need?
-  - each box needs an // id and we will need to match the ID to that specific position on the board
 
 2. What functions do I think I will need?
   - toggle between plays and shows whos turn it is
@@ -103,11 +127,6 @@ Pseudocode:
     - probably tied to an event listener
   - reset to refresh the board
   - redraw the board once it refreshes
-  - find the index of the array
-
-
-3. Game clas? What should go inside of my game class?
-4. Player class? What should go inside of my player class?
 */
 
 
