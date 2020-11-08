@@ -1,7 +1,7 @@
 class Game {
   constructor() {
-    this.player1 = new Player(1, 'X', true);
-    this.player2 = new Player(2, 'O', false);
+    this.player1 = new Player(1, 'X', true, false);
+    this.player2 = new Player(2, 'O', false, false);
     this.boardData = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
     this.winConditions = [
       [0, 1, 2], //row winning
@@ -21,8 +21,10 @@ class Game {
     var newIndex = boxIndex.split('-');
     newIndex = parseInt(newIndex[1]);
     if (this.player1.turn === true) {
+      console.log('player1', this.player1.turn)
       this.boardData.splice(newIndex, 1, this.player2.token);
     } else if (this.player2.turn === true) {
+      console.log('player2', this.player2.turn)
       this.boardData.splice(newIndex, 1, this.player1.token);
     }
   }
@@ -30,7 +32,9 @@ class Game {
   switchPlayerTurn() {
     this.clickCounter++;
     this.player1.turn = !this.player1.turn;
+    console.log('player1', this.player1.turn)
     this.player2.turn = !this.player2.turn;
+    console.log('player2', this.player2.turn)
   }
 
   checkWins() {
@@ -45,6 +49,7 @@ class Game {
         oArray.push(i);
       }
     }
+
     for (var i = 0; i < this.winConditions.length; i++) {
       xCount = 0;
       oCount = 0;
@@ -59,18 +64,26 @@ class Game {
         }
       }
       if (xCount === 3) {
+        this.player1.winner = true;
         return this.gameWon = true;
       } else if (oCount === 3) {
+        this.player2.winner = true;
         return this.gameWon = true;
-      // } else {
-      //   return this.gameWon = false;
+      } else if (this.clickCounter === 9) {
+        return this.gameWon = false;
       }
+    }
+}
+
+  saveWins() {
+    if (this.player1.winner === true) {
+      this.player1.wins++;
+    } else if (this.player2.winner === true) {
+      this.player2.wins++;
     }
   }
 }
 
-// recommend using win condiitons to see if its a draw or not.
-// if you are not meeting win conditions then it should be a draw
 
 //loop through board data and if that index == X and add i to the x array
 // if boardData[i] = add to the ) array
