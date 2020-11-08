@@ -1,8 +1,8 @@
 
 class Game {
   constructor() {
-    this.player1 = new Player(1, 'taxi', true, false);
-    this.player2 = new Player(2, 'pizza', false, false);
+    this.player1 = new Player(1, 'X', true);
+    this.player2 = new Player(2, 'O', false);
     this.boardData = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
     this.winConditions = [
       [0, 1, 2], //row winning
@@ -20,11 +20,13 @@ class Game {
   }
 
   addMovesToBoard(boxIndex) {
-    for (var i = 0; i < this.boardData.length; i++) {
-        this.boardData.push(boxIndex);
-      }
-    // if this boxIndex matches
-    // once that box is clicked, then push that number into the game board array at that index.
+    var newIndex = boxIndex.split('-');
+    newIndex = parseInt(newIndex[1]);
+    if (this.player1.turn === true) {
+      this.boardData.splice(newIndex, 1, this.player2.token);
+    } else if (this.player2.turn === true) {
+      this.boardData.splice(newIndex, 1, this.player1.token);
+    }
   }
 
   switchPlayerTurn() {

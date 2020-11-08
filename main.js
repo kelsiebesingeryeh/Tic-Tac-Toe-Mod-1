@@ -52,6 +52,7 @@ function disableClicks(event) {
 function addMoves(event) {
   boxIndex = event.target.id;
   currentGame.addMovesToBoard(boxIndex);
+  console.log(boxIndex)
   console.log(currentGame.boardData);
 }
 
