@@ -9,36 +9,34 @@ window.onload = startGame();
 
 boardWrapper.addEventListener('click', function(event) {
   if (event.target.classList.contains('box')) {
-    playGame();
+    playGame(event);
   }
 })
 
 function startGame() {
   currentGame = new Game();
   currentGame.player1.turn = true;
-  defaultDisplay();
   displayWinnerCount();
 }
 
-function playGame() {
-  toggleToken(event);
-  addMoves(event);
+function playGame(event) {
+  handleEvents(event);
   currentGame.switchPlayerTurn();
   updateDisplayPlayerTurn();
-  disableClicks(event);
   currentGame.checkWins();
-  displayWinner();
-  displayDraw();
   displayWinnerCount();
-  // setTimeOut(clearBoard, 5000);
+  gameOver();
+}
+
+function handleEvents(event) {
+  toggleToken(event);
+  addMoves(event);
+  // disableClicks(event);
 }
 
 function displayWinnerCount() {
-  currentGame.saveWins();
   player1Wins.innerText = `${currentGame.player1.wins} wins`;
   player2Wins.innerText = `${currentGame.player2.wins} wins`;
-  console.log(currentGame.player1.wins)
-  console.log(currentGame.gameWon)
 }
 
 function displayWinner() {
@@ -55,57 +53,68 @@ function displayDraw() {
   }
 }
 
-function disableClicks(event) {
-  for (var i = 0; i < allBoxes.length; i++) {
-    if (currentGame.clickCounter === 9 || currentGame.gameWon === true) {
-      allBoxes[i].classList.add('avoid-clicks');
-    }
-  }
-  if (event.target.innerText !== '') {
-    event.target.classList.add('avoid-clicks');
-  }
-}
+// function disableClicks(event) {
+//   for (var i = 0; i < allBoxes.length; i++) {
+//     if (currentGame.clickCounter === 9 || currentGame.gameWon === true) {
+//       allBoxes[i].classList.add('avoid-clicks');
+//     }
+//   }
+//   if (event.target.innerText !== '') {
+//     event.target.classList.add('avoid-clicks');
+//   }
+// }
 
 function addMoves(event) {
-  boxIndex = event.target.id;
+  var boxIndex = event.target.id;
   currentGame.addMovesToBoardData(boxIndex);
+
 }
 
 function toggleToken(event) {
-  if (currentGame.player1.turn === true) {
+  if (currentGame.player1.turn) {
     event.target.innerText = `🚕`;
-  } else if (currentGame.player2.turn === true) {
+  } else if (currentGame.player2.turn) {
     event.target.innerText = `🍕`;
   }
 }
 
-function defaultDisplay() {
-  if (currentGame.player1.turn === true) {
-    playerDisplayText.innerText = `It's 🚕's turn`;
-  }
-}
-
 function updateDisplayPlayerTurn() {
-  if (currentGame.player1.turn === true) {
+  if (currentGame.player1.turn) {
     playerDisplayText.innerHTML = `It's 🚕's turn`;
-  } else if (currentGame.player2.turn === true) {
+  } else if (currentGame.player2.turn) {
     playerDisplayText.innerHTML = `It's 🍕's turn`;
   }
 }
 
-function clearBoard() {
+function gameOver() {
   if (currentGame.gameWon === true || currentGame.tie === true) {
-    for (var i = 0; i < allBoxes.length; i++) {
-        allBoxes[i].innerText = '';
-        allBoxes[i].classList.remove('avoid-clicks');
-      }
+    displayWinner();
+    displayDraw();
+    currentGame.saveWin();
     currentGame.resetBoard();
-    defaultDisplay();
+    startNewGame();
   }
 }
+
+function startNewGame() {
+  return setTimeout(function() {
+    console.log('does this work')
+    clearBoard()
+    updateDisplayPlayerTurn();
+  }, 1000)
+}
+
+function clearBoard() {
+    for (var i = 0; i < allBoxes.length; i++) {
+      allBoxes[i].innerText = '';
+    }
+}
+
+//ISSUE - disable clicks, lets you keep clicking when you aren't supposed to
 
 /*
 QUESTIONS - NEED HELP
 3. timeout - need to set a timeout to clear the board after game ends. redraw board once it refreshes
 4. localStorage!!!
+
 */

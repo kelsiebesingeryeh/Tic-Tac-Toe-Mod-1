@@ -6,22 +6,4 @@ class Player {
     this.turn = turn;
     this.winner = false;
   }
-
-
-
-  //turn property? boolean?
-
-  saveWinsToStorage() {
-
-  }
-
-// save number of wins
-// length of wins array
-
-  retrieveWinsFromStorage() {
-
-  }
-
-
-
 }
