@@ -75,11 +75,23 @@ class Game {
 }
 
   saveWin() {
-    if (this.player1.winner === true) {
+    if (this.player1.winner) {
       this.player1.wins++;
-    } else if (this.player2.winner === true) {
+      this.saveToLocalStorage();
+    } else if (this.player2.winner) {
       this.player2.wins++;
+      this.saveToLocalStorage();
     }
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem('player1WinCount', JSON.stringify(this.player1.wins));
+    localStorage.setItem('player2WinCount', JSON.stringify(this.player2.wins));
+    // this.player1.saveWinsToStorage();
+    // this.player2.saveWinsToStorage();
+    // currentGame.player1.retrieveWinsFromStorage();
+    // currentGame.player2.retrieveWinsFromStorage();
+    //something here for local storage;
   }
 
   resetBoard() {

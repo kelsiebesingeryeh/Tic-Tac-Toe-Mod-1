@@ -36,13 +36,7 @@ function playGame() {
   setInterval(clearBoard, 5000);
 }
 
-function saveToLocalStorage() {
-  currentGame.player1.saveWinsToStorage();
-  currentGame.player2.saveWinsToStorage();
-  // currentGame.player1.retrieveWinsFromStorage();
-  // currentGame.player2.retrieveWinsFromStorage();
-  //something here for local storage;
-}
+
 
 function displayWinnerCount() {
   player1Wins.innerText = `${currentGame.player1.wins} wins`;
