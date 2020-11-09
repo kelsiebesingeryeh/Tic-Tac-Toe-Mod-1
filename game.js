@@ -67,12 +67,12 @@ class Game {
         this.player2.winner = true;
         return this.gameWon = true;
       }
-      }
-      if (this.clickCounter === 9) {
-        this.tie = true;
-        return this.gameWon = false;
     }
-}
+    if (this.clickCounter === 9) {
+      this.tie = true;
+      return this.gameWon = false;
+    }
+  }
 
   saveWin() {
     if (this.player1.winner) {
@@ -99,13 +99,13 @@ class Game {
   }
 
   resetBoard() {
-        this.player1.turn = true;
-        this.player2.turn = false;
-        this.boardData = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-        this.gameWon = false;
-        this.clickCounter = 0;
-        this.tie = false;
-        this.player1.winner = false;
-        this.player2.winner = false;
-      }
+    this.player1.turn = true;
+    this.player2.turn = false;
+    this.boardData = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    this.gameWon = false;
+    this.clickCounter = 0;
+    this.tie = false;
+    this.player1.winner = false;
+    this.player2.winner = false;
+  }
 }
