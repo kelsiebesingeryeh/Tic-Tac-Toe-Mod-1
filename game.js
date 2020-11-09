@@ -74,7 +74,7 @@ class Game {
     }
 }
 
-  saveWins() {
+  saveWin() {
     if (this.player1.winner === true) {
       this.player1.wins++;
     } else if (this.player2.winner === true) {
@@ -88,6 +88,7 @@ class Game {
         this.boardData = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         this.gameWon = false;
         this.clickCounter = 0;
+        this.tie = false;
       }
 }
 

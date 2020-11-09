@@ -8,20 +8,13 @@ class Player {
   }
 
 
-
-  //turn property? boolean?
-
   saveWinsToStorage() {
-
+    debugger
+    localStorage.setItem('wins', JSON.stringify(this));
   }
-
-// save number of wins
-// length of wins array
 
   retrieveWinsFromStorage() {
-
+    var retrieveWins = localStorage.getItem('wins')
+    JSON.parse(retrieveWins);
   }
-
-
-
 }
