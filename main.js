@@ -4,13 +4,13 @@ var playerDisplayText = document.querySelector('.display-player');
 var player1Wins = document.querySelector('.display-winner-one');
 var player2Wins = document.querySelector('.display-winner-two');
 var currentGame;
-var timer;
 
 window.onload = startGame();
 
+
 boardWrapper.addEventListener('click', function(event) {
   if (event.target.classList.contains('box')) {
-    playGame();
+    playGame(event);
   }
 })
 
@@ -21,22 +21,16 @@ function startGame() {
   displayWinnerCount();
 }
 
-function playGame() {
+function playGame(event) {
   toggleToken(event);
   addMoves(event);
   currentGame.switchPlayerTurn();
   updateDisplayPlayerTurn();
   disableClicks(event);
   currentGame.checkWins();
-  currentGame.saveWin();
-  // saveToLocalStorage();
-  displayWinner();
-  displayDraw();
   displayWinnerCount();
-  setInterval(clearBoard, 5000);
+  gameOver();
 }
-
-
 
 function displayWinnerCount() {
   player1Wins.innerText = `${currentGame.player1.wins} wins`;
@@ -44,22 +38,22 @@ function displayWinnerCount() {
 }
 
 function displayWinner() {
-  if (currentGame.gameWon && currentGame.player1.turn === false) {
+  if (currentGame.gameWon === true && currentGame.player1.turn === false) {
     playerDisplayText.innerText = `🚕 won!`;
-  } else if (currentGame.gameWon && !currentGame.player2.turn) {
+  } else if (currentGame.gameWon === true && currentGame.player2.turn === false) {
     playerDisplayText.innerText = `🍕 won!`;
   }
 }
 
 function displayDraw() {
-  if (currentGame.clickCounter === 9 && currentGame.tie) {
+  if (currentGame.clickCounter === 9 && currentGame.tie === true) {
     playerDisplayText.innerText = `It's a draw!`;
   }
 }
 
 function disableClicks(event) {
   for (var i = 0; i < allBoxes.length; i++) {
-    if (currentGame.clickCounter === 9 || currentGame.gameWon) {
+    if (currentGame.clickCounter === 9 || currentGame.gameWon === true) {
       allBoxes[i].classList.add('avoid-clicks');
     }
   }
@@ -69,7 +63,7 @@ function disableClicks(event) {
 }
 
 function addMoves(event) {
-  boxIndex = event.target.id;
+  var boxIndex = event.target.id;
   currentGame.addMovesToBoardData(boxIndex);
 }
 
@@ -88,26 +82,36 @@ function defaultDisplay() {
 }
 
 function updateDisplayPlayerTurn() {
-  if (currentGame.player1.turn === true) {
+  if (currentGame.player1.turn) {
     playerDisplayText.innerHTML = `It's 🚕's turn`;
-  } else if (currentGame.player2.turn === true) {
+  } else if (currentGame.player2.turn) {
     playerDisplayText.innerHTML = `It's 🍕's turn`;
   }
 }
 
 function gameOver() {
-  currentGame.resetBoard();
-  clearBoard();
+  if (currentGame.gameWon === true || currentGame.tie === true) {
+    displayWinner();
+    displayDraw();
+    currentGame.saveWin();
+    currentGame.resetBoard();
+    startNewGame();
+  }
+}
+
+function startNewGame() {
+  window.setTimeout(clearBoard, 2*1000);
 }
 
 function clearBoard() {
   if (currentGame.gameWon === true || currentGame.tie === true) {
     for (var i = 0; i < allBoxes.length; i++) {
-        allBoxes[i].innerText = '';
-        allBoxes[i].classList.remove('avoid-clicks');
-      }
+      allBoxes[i].innerText = '';
+      allBoxes[i].classList.remove('avoid-clicks');
+    }
   }
 }
+
 
 //ISSUE - disable clicks, lets you keep clicking when you aren't supposed to
 //

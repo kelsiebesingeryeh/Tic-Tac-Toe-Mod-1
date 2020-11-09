@@ -78,20 +78,24 @@ class Game {
     if (this.player1.winner) {
       this.player1.wins++;
       this.saveToLocalStorage();
+      this.retrieveWinsFromStorage();
     } else if (this.player2.winner) {
       this.player2.wins++;
       this.saveToLocalStorage();
+      this.retrieveWinsFromStorage();
     }
   }
 
   saveToLocalStorage() {
     localStorage.setItem('player1WinCount', JSON.stringify(this.player1.wins));
     localStorage.setItem('player2WinCount', JSON.stringify(this.player2.wins));
-    // this.player1.saveWinsToStorage();
-    // this.player2.saveWinsToStorage();
-    // currentGame.player1.retrieveWinsFromStorage();
-    // currentGame.player2.retrieveWinsFromStorage();
-    //something here for local storage;
+  }
+
+  retrieveWinsFromStorage() {
+    var getPlayer1Wins = localStorage.getItem('player1WinCount');
+    var getPlayer2Wins = localStorage.getItem('player2WinCount');
+    JSON.parse(getPlayer1Wins);
+    JSON.parse(getPlayer2Wins);
   }
 
   resetBoard() {
@@ -101,11 +105,7 @@ class Game {
         this.gameWon = false;
         this.clickCounter = 0;
         this.tie = false;
+        this.player1.winner = false;
+        this.player2.winner = false;
       }
 }
-
-
-// check win conditions?- loop through win conditions and compare to board DATA. if/else stricly compare to win conditions
-// winning conditions can match board data (loop through winning conditions through board data). same as draw conditions as well.
-// compare board conditions to winning conditions on every turn to see if the game is over
-// detect when game is a draw - need to figure out draw conditions and every time a player goes, it checks draw conditions

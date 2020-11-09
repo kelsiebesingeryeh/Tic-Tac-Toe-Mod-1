@@ -6,15 +6,4 @@ class Player {
     this.turn = turn;
     this.winner = false;
   }
-
-
-  // saveWinsToStorage() {
-  //   debugger
-  //   localStorage.setItem('wins', JSON.stringify(this));
-  // }
-
-  retrieveWinsFromStorage() {
-    var retrieveWins = localStorage.getItem('wins')
-    JSON.parse(retrieveWins);
-  }
 }
