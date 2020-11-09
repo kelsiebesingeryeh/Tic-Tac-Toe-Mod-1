@@ -20,7 +20,7 @@ h1 {
   float: left;
   margin-top: 10%;
   padding-left: 1%;
-  text-align: center;
+
 }
 
 .display-winner-two {
@@ -30,9 +30,25 @@ h1 {
 }
 
 .taxi {
-  margin-left: 10%;
+  float: left;
+  margin-top: 4%;
+  padding-left: 1%;
+  padding-left: 1%;
+  margin-left: 0%;
   position: relative;
-  bottom: 40%;
+  left: 6%;
+  font-size: 30px;
+}
+
+.pizza {
+  float: right;
+  margin-top: 4%;
+  padding-right: 1%;
+  padding-right: 1%;
+  margin-right: 0%;
+  position: relative;
+  right: 6%;
+  font-size: 30px;
 }
 
 .container-wrapper {
