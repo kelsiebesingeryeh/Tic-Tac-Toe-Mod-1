@@ -87,7 +87,7 @@ function gameOver() {
   }
 }
 
-function startNewGame() {
+function startNewGame(event) {
   return setTimeout(function() {
     clearBoard();
     updateDisplayPlayerTurn();
@@ -101,11 +101,3 @@ function clearBoard() {
       allBoxes[i].classList.remove('avoid-clicks');
     }
 }
-
-
-/*
-QUESTIONS - NEED HELP
-3. timeout - need to set a timeout to clear the board after game ends. redraw board once it refreshes
-4. localStorage!!!
-
-*/
