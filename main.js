@@ -96,8 +96,8 @@ function startNewGame(event) {
 }
 
 function clearBoard() {
-  for (var i = 0; i < allBoxes.length; i++) {
-    allBoxes[i].innerText = '';
-    allBoxes[i].classList.remove('avoid-clicks');
-  }
+    for (var i = 0; i < allBoxes.length; i++) {
+      allBoxes[i].innerText = '';
+      allBoxes[i].classList.remove('avoid-clicks');
+    }
 }

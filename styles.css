@@ -1,7 +1,11 @@
+/* * {
+  border: 2px solid red;
+} */
+
 html {
   height: 100%;
-  width: 100%;
 }
+
 body {
   background-image: url(https://images.unsplash.com/photo-1518355077561-4af7abce973d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80);
   background-repeat: no-repeat;
@@ -20,34 +24,21 @@ h1 {
 
 /* DISPLAY WIN BOARDS */
 
-.display-winner-one {
-  float: left;
-  margin-top: 10%;
-  padding-left: 1%;
+article {
+  display: flex;
+  justify-content: space-between;
 }
 
-.display-winner-two {
-  float: right;
-  margin-top: 10%;
-  padding-right: 1%;
-}
-
-.taxi {
-  float: left;
-  margin-top: 4%;
-  padding-left: 1%;
-  position: relative;
-  left: 6%;
-  font-size: 30px;
-}
-
+.taxi,
 .pizza {
-  float: right;
-  margin-top: 4%;
-  padding-right: 1%;
-  position: relative;
-  right: 6%;
   font-size: 30px;
+  text-align: center;
+  margin: 0px 185px 35px 185px;
+}
+
+.display-winner-one,
+.display-winner-two {
+  margin: -35px 185px 0px 185px;
 }
 
 /* TIC-TAC-TOE-BOARD */
@@ -56,10 +47,10 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   height: 800px;
-  width: 600px;
+  width: 675px;
   margin: auto;
+  margin-top: -130px;
 }
 
 .board-wrap {
@@ -67,7 +58,6 @@ h1 {
   flex-wrap: wrap;
   height: 25%;
   width: 35%;
-  position: fixed;
   margin-bottom: 55%;
 }
 
