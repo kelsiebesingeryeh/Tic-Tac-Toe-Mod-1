@@ -21,9 +21,10 @@ class Game {
   addMovesToBoardData(boxIndex) {
     var newIndex = boxIndex.split('-');
     newIndex = parseInt(newIndex[1]);
-    if (this.player1.turn === true) {
+
+    if (this.player1.turn) {
       this.boardData.splice(newIndex, 1, this.player1.token);
-    } else if (this.player2.turn === true) {
+    } else if (this.player2.turn) {
       this.boardData.splice(newIndex, 1, this.player2.token);
     }
   }
@@ -39,6 +40,7 @@ class Game {
     var oArray = [];
     var xCount;
     var oCount;
+
     for (var i = 0; i < this.boardData.length; i++) {
       if (this.boardData[i] === "X") {
         xArray.push(i);
@@ -50,16 +52,19 @@ class Game {
     for (var i = 0; i < this.winConditions.length; i++) {
       xCount = 0;
       oCount = 0;
+
       for (var k = 0; k < xArray.length; k++) {
         if (this.winConditions[i].includes(xArray[k])) {
           xCount++;
         }
       }
+
       for (var j = 0; j < oArray.length; j++) {
         if (this.winConditions[i].includes(oArray[j])) {
           oCount++;
         }
       }
+
       if (xCount === 3) {
         this.player1.winner = true;
         return this.gameWon = true;
@@ -68,6 +73,7 @@ class Game {
         return this.gameWon = true;
       }
     }
+
     if (this.clickCounter === 9) {
       this.tie = true;
       return this.gameWon = false;
@@ -96,12 +102,14 @@ class Game {
     var getPlayer2Wins = localStorage.getItem('player2WinCount');
     var player1 = JSON.parse(getPlayer1Wins);
     var player2 = JSON.parse(getPlayer2Wins);
-    if (player1 === undefined || player1 === null) {
+
+    if (player1 === null) {
       this.player1.wins = 0;
-    } else  {
+    } else {
       this.player1.wins = player1;
     }
-    if (player2 === null || player2 === undefined) {
+
+    if (player2 === null) {
       this.player2.wins = 0;
     } else {
       this.player2.wins = player2;

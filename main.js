@@ -1,8 +1,8 @@
 var allBoxes = document.querySelectorAll('.box');
 var boardWrapper = document.querySelector('.board-wrap');
-var playerDisplayText = document.querySelector('.display-player');
-var player1Wins = document.querySelector('.display-winner-one');
-var player2Wins = document.querySelector('.display-winner-two');
+var displayPlayer = document.querySelector('.display-player');
+var player1Wins = document.querySelector('.display-player-one');
+var player2Wins = document.querySelector('.display-player-two');
 var currentGame;
 
 window.onload = startGame();
@@ -39,16 +39,16 @@ function displayWinnerCount() {
 }
 
 function displayWinner() {
-  if (currentGame.gameWon === true && currentGame.player1.turn === false) {
-    playerDisplayText.innerText = `🚕 won!`;
-  } else if (currentGame.gameWon === true && currentGame.player2.turn === false) {
-    playerDisplayText.innerText = `🍕 won!`;
+  if (currentGame.gameWon && !currentGame.player1.turn) {
+    displayPlayer.innerText = `🚕 won!`;
+  } else if (currentGame.gameWon && !currentGame.player2.turn) {
+    displayPlayer.innerText = `🍕 won!`;
   }
 }
 
 function displayDraw() {
-  if (currentGame.clickCounter === 9 && currentGame.tie === true) {
-    playerDisplayText.innerText = `It's a draw!`;
+  if (currentGame.clickCounter === 9 && currentGame.tie) {
+    displayPlayer.innerText = `It's a draw!`;
   }
 }
 
@@ -57,7 +57,7 @@ function addMoves(event) {
   currentGame.addMovesToBoardData(boxIndex);
 
   if (event.target.innerText === '🚕' || '🍕') {
-    event.target.classList.add('avoid-clicks')
+    event.target.classList.add('avoid-clicks');
   }
 }
 
@@ -71,14 +71,14 @@ function toggleToken(event) {
 
 function updateDisplayPlayerTurn() {
   if (currentGame.player1.turn) {
-    playerDisplayText.innerHTML = `It's 🚕's turn`;
+    displayPlayer.innerHTML = `It's 🚕's turn`;
   } else if (currentGame.player2.turn) {
-    playerDisplayText.innerHTML = `It's 🍕's turn`;
+    displayPlayer.innerHTML = `It's 🍕's turn`;
   }
 }
 
 function gameOver() {
-  if (currentGame.gameWon === true || currentGame.tie === true) {
+  if (currentGame.gameWon || currentGame.tie) {
     displayWinner();
     displayDraw();
     currentGame.saveWin();
@@ -92,12 +92,12 @@ function startNewGame(event) {
     clearBoard();
     updateDisplayPlayerTurn();
     displayWinnerCount();
-  }, 500)
+  }, 500);
 }
 
 function clearBoard() {
-    for (var i = 0; i < allBoxes.length; i++) {
-      allBoxes[i].innerText = '';
-      allBoxes[i].classList.remove('avoid-clicks');
-    }
+  for (var i = 0; i < allBoxes.length; i++) {
+    allBoxes[i].innerText = '';
+    allBoxes[i].classList.remove('avoid-clicks');
+  }
 }
