@@ -92,7 +92,7 @@ function startNewGame(event) {
     clearBoard();
     updateDisplayPlayerTurn();
     displayWinnerCount();
-  }, 500)
+  }, 500);
 }
 
 function clearBoard() {
