@@ -4,14 +4,14 @@ class Game {
     this.player2 = new Player(2, 'O', false, false);
     this.boardData = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
     this.winConditions = [
-      [0, 1, 2], //row winning
-      [3, 4, 5], //row winning
-      [6, 7, 8], //row winning
-      [0, 3, 6], //column winning
-      [1, 4, 7], //column winning
-      [2, 5, 8], //column winning
-      [0, 4, 8], //diagonal winning
-      [2, 4, 6], //diagonal winning
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
     ];
     this.gameWon = false;
     this.clickCounter = 0;
@@ -98,22 +98,10 @@ class Game {
   }
 
   retrieveWinsFromStorage() {
-    var getPlayer1Wins = localStorage.getItem('player1WinCount');
-    var getPlayer2Wins = localStorage.getItem('player2WinCount');
-    var player1 = JSON.parse(getPlayer1Wins);
-    var player2 = JSON.parse(getPlayer2Wins);
-
-    if (player1 === null) {
-      this.player1.wins = 0;
-    } else {
-      this.player1.wins = player1;
-    }
-
-    if (player2 === null) {
-      this.player2.wins = 0;
-    } else {
-      this.player2.wins = player2;
-    }
+    var getPlayer1Wins = localStorage.getItem('player1WinCount') || 0;
+    var getPlayer2Wins = localStorage.getItem('player2WinCount') || 0;
+    this.player1.wins = JSON.parse(getPlayer1Wins);
+    this.player2.wins = JSON.parse(getPlayer2Wins);
   }
 
   resetBoard() {

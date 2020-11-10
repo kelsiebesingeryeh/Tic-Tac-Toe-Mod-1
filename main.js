@@ -15,20 +15,19 @@ boardWrapper.addEventListener('click', function(event) {
 
 function startGame() {
   currentGame = new Game();
-  currentGame.player1.turn = true;
   currentGame.retrieveWinsFromStorage();
   displayWinnerCount();
 }
 
 function playGame(event) {
-  handleEvents(event);
+  handleBoardMoveEvents(event);
   currentGame.switchPlayerTurn();
   updateDisplayPlayerTurn();
   currentGame.checkWins();
   gameOver();
 }
 
-function handleEvents(event) {
+function handleBoardMoveEvents(event) {
   toggleToken(event);
   addMoves(event);
 }
@@ -87,12 +86,12 @@ function gameOver() {
   }
 }
 
-function startNewGame(event) {
+function startNewGame() {
   return setTimeout(function() {
     clearBoard();
     updateDisplayPlayerTurn();
     displayWinnerCount();
-  }, 500);
+  }, 1000);
 }
 
 function clearBoard() {
