@@ -16,6 +16,7 @@ boardWrapper.addEventListener('click', function(event) {
 function startGame() {
   currentGame = new Game();
   currentGame.player1.turn = true;
+  currentGame.retrieveWinsFromStorage();
   displayWinnerCount();
 }
 
@@ -24,14 +25,12 @@ function playGame(event) {
   currentGame.switchPlayerTurn();
   updateDisplayPlayerTurn();
   currentGame.checkWins();
-  displayWinnerCount();
   gameOver();
 }
 
 function handleEvents(event) {
   toggleToken(event);
   addMoves(event);
-  // disableClicks(event);
 }
 
 function displayWinnerCount() {
@@ -53,21 +52,9 @@ function displayDraw() {
   }
 }
 
-// function disableClicks(event) {
-//   for (var i = 0; i < allBoxes.length; i++) {
-//     if (currentGame.clickCounter === 9 || currentGame.gameWon === true) {
-//       allBoxes[i].classList.add('avoid-clicks');
-//     }
-//   }
-//   if (event.target.innerText !== '') {
-//     event.target.classList.add('avoid-clicks');
-//   }
-// }
-
 function addMoves(event) {
   var boxIndex = event.target.id;
   currentGame.addMovesToBoardData(boxIndex);
-
 }
 
 function toggleToken(event) {
@@ -98,10 +85,10 @@ function gameOver() {
 
 function startNewGame() {
   return setTimeout(function() {
-    console.log('does this work')
-    clearBoard()
+    clearBoard();
     updateDisplayPlayerTurn();
-  }, 1000)
+    displayWinnerCount();
+  }, 500)
 }
 
 function clearBoard() {
@@ -110,7 +97,6 @@ function clearBoard() {
     }
 }
 
-//ISSUE - disable clicks, lets you keep clicking when you aren't supposed to
 
 /*
 QUESTIONS - NEED HELP

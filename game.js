@@ -94,8 +94,18 @@ class Game {
   retrieveWinsFromStorage() {
     var getPlayer1Wins = localStorage.getItem('player1WinCount');
     var getPlayer2Wins = localStorage.getItem('player2WinCount');
-    JSON.parse(getPlayer1Wins);
-    JSON.parse(getPlayer2Wins);
+    var player1 = JSON.parse(getPlayer1Wins);
+    var player2 = JSON.parse(getPlayer2Wins);
+    if (player1 === undefined || player1 === null) {
+      this.player1.wins = 0;
+    } else  {
+      this.player1.wins = player1;
+    }
+    if (player2 === null || player2 === undefined) {
+      this.player2.wins = 0;
+    } else {
+      this.player2.wins = player2;
+    }
   }
 
   resetBoard() {
