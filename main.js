@@ -55,6 +55,10 @@ function displayDraw() {
 function addMoves(event) {
   var boxIndex = event.target.id;
   currentGame.addMovesToBoardData(boxIndex);
+
+  if (event.target.innerText === '🚕' || '🍕') {
+    event.target.classList.add('avoid-clicks')
+  }
 }
 
 function toggleToken(event) {
@@ -83,7 +87,7 @@ function gameOver() {
   }
 }
 
-function startNewGame() {
+function startNewGame(event) {
   return setTimeout(function() {
     clearBoard();
     updateDisplayPlayerTurn();
@@ -92,15 +96,8 @@ function startNewGame() {
 }
 
 function clearBoard() {
-    for (var i = 0; i < allBoxes.length; i++) {
-      allBoxes[i].innerText = '';
-    }
+  for (var i = 0; i < allBoxes.length; i++) {
+    allBoxes[i].innerText = '';
+    allBoxes[i].classList.remove('avoid-clicks');
+  }
 }
-
-
-/*
-QUESTIONS - NEED HELP
-3. timeout - need to set a timeout to clear the board after game ends. redraw board once it refreshes
-4. localStorage!!!
-
-*/
