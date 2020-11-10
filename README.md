@@ -4,7 +4,7 @@
 
 Tic Tac Toe is a our final project for the Turing School of Software and Design. The purpose of the application is to create a game where two users can play Tic-Tac-Toe.
 
-In Tic-Tac-Toe, there are two players (taxi cab and pizza) and each player can click on a box inside of the Tic-Tac-Toe grid and token appears on the screen. Once a player hits 3 in a row, the game is over and the player who won is identified and their count count goes up by one. Once the game is over, the board resets on a timer and the game starts over again. I used localStorage in order to keep the scores from disappearing on page refresh. The scores also are carried over from game to game unless a user clears their localStorage. If there is no winner, then the game is a draw and both users are notified that its a draw and win counts are not updated.
+In Tic-Tac-Toe, there are two players (taxi cab and pizza) and each player can click on a box inside of the Tic-Tac-Toe grid and token appears on the screen. Once a player hits 3 in a row, the game is over and the player who won is identified and their win count goes up by one. Once the game is over, the board resets on a timer and the game starts over again. I used localStorage in order to keep the scores from disappearing on page refresh. The scores also are carried over from game to game unless a user clears their localStorage. If there is no winner, then the game is a draw and both users are notified that its a draw and win counts are not updated.
 
 The spec for this project can be found [here](https://frontend.turing.io/projects/module-1/tic-tac-toe-solo.html).
 
