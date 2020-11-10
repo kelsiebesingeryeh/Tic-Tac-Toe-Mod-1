@@ -55,6 +55,10 @@ function displayDraw() {
 function addMoves(event) {
   var boxIndex = event.target.id;
   currentGame.addMovesToBoardData(boxIndex);
+
+  if (event.target.innerText === '🚕' || '🍕') {
+    event.target.classList.add('avoid-clicks')
+  }
 }
 
 function toggleToken(event) {
@@ -94,6 +98,7 @@ function startNewGame() {
 function clearBoard() {
     for (var i = 0; i < allBoxes.length; i++) {
       allBoxes[i].innerText = '';
+      allBoxes[i].classList.remove('avoid-clicks');
     }
 }
 

@@ -9,19 +9,20 @@
 
 <body>
   <main>
-
-    <section class="display-one">
-      <p class="taxi">🚕</p>
-      <p class="display-winner-one"></p>
-    </section>
-
-    <section class="display-two">
-      <p class="pizza">🍕</p>
-      <p class="display-winner-two"></p>
-    </section>
-
-    <section class="board">
+    <header>
       <h1 class="display-player">It's 🚕's turn</h1>
+    </header>
+    <section class="board">
+      <article>
+        <span class="display-one">
+          <p class="taxi">🚕</p>
+          <p class="display-winner-one"></p>
+        </span>
+        <span class="display-two">
+          <p class="pizza">🍕</p>
+          <p class="display-winner-two"></p>
+        </span>
+      </article>
       <div class="container-wrapper">
         <div class="board-wrap">
           <div class="box" id="box-0"></div>
@@ -35,8 +36,7 @@
           <div class="box" id="box-8"></div>
         </div>
       </div>
-    </section>
-
+  </section>
   </main>
   <script src="./player.js"></script>
   <script src="./game.js"></script>
