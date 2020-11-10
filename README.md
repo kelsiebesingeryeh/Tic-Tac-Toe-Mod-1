@@ -1,5 +1,14 @@
 # Tic-Tac-Toe
 
+## Table of Contents
+
+* [Overview](#overview)
+* [Prerequisites](#prerequisites)
+* [Using the App](#using-the-app)
+* [Languages](#languages)
+* [Contact](#contact)
+* [Acknowledgements](#acknowledgements)
+
 ## Overview
 
 Tic Tac Toe is a our final project for the Turing School of Software and Design. The purpose of the application is to create a game where two users can play Tic-Tac-Toe.
@@ -31,10 +40,10 @@ Here is a quick video on how the game works.
 
 This project was written using HTML, CSS, and JavaScript
 
-### Author
+### Contact
 
 [Kelsie Besinger Yeh](https://github.com/kelsiebesingeryeh)
 
-### Special Thanks
+### Acknowledgements
 
 Mentor code review with Hilary Lewis and Rock support/guidance from Bailey Dunning.
