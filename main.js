@@ -16,6 +16,7 @@ boardWrapper.addEventListener('click', function(event) {
 function startGame() {
   currentGame = new Game();
   currentGame.player1.turn = true;
+  currentGame.retrieveWinsFromStorage();
   displayWinnerCount();
 }
 
@@ -87,7 +88,6 @@ function startNewGame() {
     clearBoard();
     updateDisplayPlayerTurn();
     displayWinnerCount();
-    currentGame.saveWin();
   }, 500)
 }
 
