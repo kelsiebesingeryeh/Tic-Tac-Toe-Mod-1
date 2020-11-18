@@ -39,9 +39,9 @@ function displayWinnerCount() {
 
 function displayWinner() {
   if (currentGame.gameWon && !currentGame.player1.turn) {
-    displayPlayer.innerText = `🚕 won!`;
+    displayPlayer.innerText = `🌊 won!`;
   } else if (currentGame.gameWon && !currentGame.player2.turn) {
-    displayPlayer.innerText = `🍕 won!`;
+    displayPlayer.innerText = `🌴 won!`;
   }
 }
 
@@ -55,24 +55,24 @@ function addMoves(event) {
   var boxIndex = event.target.id;
   currentGame.addMovesToBoardData(boxIndex);
 
-  if (event.target.innerText === '🚕' || '🍕') {
+  if (event.target.innerText === '🌊' || '🌴') {
     event.target.classList.add('avoid-clicks');
   }
 }
 
 function toggleToken(event) {
   if (currentGame.player1.turn) {
-    event.target.innerText = `🚕`;
+    event.target.innerText = `🌊`;
   } else if (currentGame.player2.turn) {
-    event.target.innerText = `🍕`;
+    event.target.innerText = `🌴`;
   }
 }
 
 function updateDisplayPlayerTurn() {
   if (currentGame.player1.turn) {
-    displayPlayer.innerHTML = `It's 🚕's turn`;
+    displayPlayer.innerHTML = `It's 🌊's turn`;
   } else if (currentGame.player2.turn) {
-    displayPlayer.innerHTML = `It's 🍕's turn`;
+    displayPlayer.innerHTML = `It's 🌴's turn`;
   }
 }
 

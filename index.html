@@ -7,21 +7,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   </head>
   <body>
-    <main>
-      <header>
-        <h1 class="display-player">It's 🚕's turn</h1>
-      </header>
-      <section class="board">
-        <article>
-          <span class="display-one">
-            <p class="taxi">🚕</p>
-            <p class="display-player-one"></p>
-          </span>
-          <span class="display-two">
-            <p class="pizza">🍕</p>
-            <p class="display-player-two"></p>
-          </span>
+    <header>
+      <h1 class="display-player">It's 🌊's turn</h1>
+    </header>
+    <main class="wrapper">
+        <article class="display-board">
+            <h2 class="taxi">🌊</h2>
+            <h2 class="display-player-one"></h2>
         </article>
+
         <article class="container-wrapper">
           <div class="board-wrap">
             <div class="box" id="box-0"></div>
@@ -35,7 +29,12 @@
             <div class="box" id="box-8"></div>
           </div>
         </article>
-      </section>
+
+        <article class="display-board">
+            <h2 class="pizza">🌴</h2>
+            <h2 class="display-player-two"></h2>
+        </article>
+
     </main>
     <script src="./player.js"></script>
     <script src="./game.js"></script>
